@@ -11,6 +11,11 @@ class Rectangle(Figure):
             raise ValueError('Invalid rectangle')
         self.a = int(a)
         self.b = int(b)
-        self.area = a * b
-        self.perimeter = 2 * (a + b)
 
+    @property
+    def area(self):
+        return self.a * self.b
+
+    @property
+    def perimeter(self):
+        return 2 * (self.a + self.b)

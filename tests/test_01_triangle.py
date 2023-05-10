@@ -5,11 +5,19 @@ from src.triangle import Triangle
 def test_triangle_perimeter_valid():
     valid_triangle = Triangle(13, 14, 15)
     assert valid_triangle.perimeter == 42, 'Wrong triangle perimeter'
+    valid_triangle.a = 16
+    valid_triangle.b = 17
+    valid_triangle.c = 18
+    assert valid_triangle.perimeter == 51, 'Wrong triangle perimeter'
 
 
 def test_triangle_area_valid():
     valid_triangle = Triangle(13, 14, 15)
     assert valid_triangle.area == 84, 'Wrong triangle area'
+    valid_triangle.a = 16
+    valid_triangle.b = 17
+    valid_triangle.c = 18
+    assert valid_triangle.area == 124, 'Wrong triangle perimeter'
 
 
 def test_triangle_area_equilateral_triangle():  # равносторонний треугольник

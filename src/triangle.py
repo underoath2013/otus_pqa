@@ -12,7 +12,19 @@ class Triangle(Figure):
         self.a = int(a)
         self.b = int(b)
         self.c = int(c)
-        self.perimeter = a + b + c
-        p = int(self.perimeter / 2)  # полупериметр
-        self.area = int(
-            (p * (p - self.a) * (p - self.b) * (p - self.c)) ** 0.5)
+
+    @property
+    def perimeter(self):
+        perimeter = self.a + self.b + self.c
+        return perimeter
+
+    @property
+    def half_perimeter(self):
+        half_perimeter = self.perimeter / 2
+        return half_perimeter
+
+    @property
+    def area(self):
+        area = int((self.half_perimeter * (self.half_perimeter - self.a) *
+                   (self.half_perimeter - self.b) * (self.half_perimeter - self.c)) ** 0.5)
+        return area

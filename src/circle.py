@@ -11,5 +11,11 @@ class Circle(Figure):
         if radius <= 0:
             raise ValueError('Invalid circle')
         self.radius = int(radius)
-        self.area = int(pi * (radius ** 2))
-        self.perimeter = int(2 * pi * radius)
+
+    @property
+    def area(self):
+        return int(pi * (self.radius ** 2))
+
+    @property
+    def perimeter(self):
+        return int(2 * pi * self.radius)

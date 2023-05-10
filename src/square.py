@@ -13,4 +13,12 @@ class Square(Rectangle):
     def __init__(self, a: int) -> None:
         if a <= 0:
             raise ValueError('Invalid square')
-        super().__init__(a, a)
+        self.a = int(a)
+
+    @property
+    def b(self):
+        return self.a
+
+    @b.setter
+    def b(self, value):
+        self.a = value
