@@ -17,7 +17,7 @@ def test_triangle_area_valid():
     valid_triangle.a = 16
     valid_triangle.b = 17
     valid_triangle.c = 18
-    assert valid_triangle.area == 124, 'Wrong triangle perimeter'
+    assert valid_triangle.area == 124, 'Wrong triangle area'
 
 
 def test_triangle_area_equilateral_triangle():  # равносторонний треугольник
