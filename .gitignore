@@ -163,7 +163,7 @@ cython_debug/
 .vscode/
 
 
-src/__pycache__/
-src/.pytest_cache/
-tests/__pycache__/
-tests/.pytest_cache/
+lesson_3/src/__pycache__/
+lesson_3/src/.pytest_cache/
+lesson_3/tests/__pycache__/
+lesson_3/tests/.pytest_cache/
