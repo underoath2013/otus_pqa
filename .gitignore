@@ -167,3 +167,4 @@ src/__pycache__/
 src/.pytest_cache/
 tests/__pycache__/
 tests/.pytest_cache/
+files/__pycache__/
