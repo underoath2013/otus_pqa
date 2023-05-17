@@ -2,31 +2,45 @@ from files import CSV_FILE, JSON_FILE
 import json
 from csv import DictReader
 
-books = []
+# books = []
 
 with open(CSV_FILE, newline='', mode='r') as f:  # открываем на чтение файл csv
     reader = DictReader(f)
 
-    for row in reader:  # собираем данные по нужным заголовкам
-        headers = {
-            "title": row["Title"],
-            "author": row["Author"],
-            "pages": int(row["Pages"]),
-            "genre": row["Genre"]
-        }
+    # вариант через list comprehension
+    books = [{
+        "title": row["Title"],
+        "author": row["Author"],
+        "pages": int(row["Pages"]),
+        "genre": row["Genre"]
+    } for row in reader]
 
-        books.append(headers)
+    # for row in reader:  # собираем данные по нужным заголовкам
+    #     headers = {
+    #         "title": row["Title"],
+    #         "author": row["Author"],
+    #         "pages": int(row["Pages"]),
+    #         "genre": row["Genre"]
+    #     }
+    # books.append(headers)
 
-users = []
+
+# users = []
 
 with open(JSON_FILE, mode='r') as f:  # открываем на чтение файл json
     data = json.load(f)
+
     # ключи, которые нам нужны
     target_keys = ["name", "gender", "address", "age"]
-    for item in data:
-        filtered_json = {key: item[key]
-                         for key in target_keys if key in item}  # итерируемся по дате с пользователями, собираем только нужные ключи
-        users.append(filtered_json)
+
+    # вариант через list comprehension
+    users = [{key: user[key] for key in target_keys if key in user}
+             for user in data]
+
+    # for item in data:
+    #     filtered_json = {key: item[key]
+    #                      for key in target_keys if key in item}  # итерируемся по дате с пользователями, собираем только нужные ключи
+    #     users.append(filtered_json)
 
 total_books = len(books)
 total_users = len(users)
