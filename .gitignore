@@ -169,3 +169,6 @@ lesson_3/tests/__pycache__/
 lesson_3/tests/.pytest_cache/
 
 lesson_5/files/__pycache__/
+
+lesson_7/tests/__pycache__/
+lesson_7/tests/.pytest_cache/
