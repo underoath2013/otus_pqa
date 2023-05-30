@@ -77,9 +77,9 @@ def test_GET_brewery_by_city__200(page):
         assert len(cities) == 1, 'Wrong quantity'
         assert cities[0] == pytest.city, 'Wrong city'
         validate(instance=response.json(), schema=brewery_schema)
-    if page == 10:
+    if page == 2:
         assert response.status_code == 200, 'Wrong status code'
         assert response.json() != [], 'Got empty response'
-        assert len(cities) == 10, 'Wrong quantity'
+        assert len(cities) == 2, 'Wrong quantity'
         assert cities == [pytest.city] * 2, 'Wrong city'
         validate(instance=response.json(), schema=brewery_schema)
