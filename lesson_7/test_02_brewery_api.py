@@ -30,14 +30,9 @@ def test_GET_brewery_by_id_404(id):
     response_404_error = "Couldn't find Brewery"
     response = requests.get(
         f"{brewery_url}/breweries/{id}")
-    if id == 1:
-        assert response.status_code == 404, 'Wrong status code'
-        assert response.json() != [], 'Got empty response'
-        assert response.json().get("message") == response_404_error, 'Wrong message values'
-    elif id == 'abc':
-        assert response.status_code == 404, 'Wrong status code'
-        assert response.json() != [], 'Got empty response'
-        assert response.json().get("message") == response_404_error, 'Wrong message values'
+    assert response.status_code == 404, 'Wrong status code'
+    assert response.json() != [], 'Got empty response'
+    assert response.json().get("message") == response_404_error, 'Wrong message values'
 
 
 def test_GET_brewery_by_id_200():
