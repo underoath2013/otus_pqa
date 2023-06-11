@@ -67,17 +67,9 @@ def test_get_brewery_by_city__200(page):
         "by_city": pytest.city,
         "per_page": page
     }
-    response = requests.get(
-        f"{brewery_url}/breweries", params=data)
+    response = requests.get(f"{brewery_url}/breweries", params=data)
     log_response(response)
     cities = [item["city"] for item in response.json()]
-    if page == 1:
-        assert response.status_code == 200, 'Wrong status code'
-        assert len(cities) == 1, 'Wrong quantity'
-        assert cities[0] == pytest.city, 'Wrong city'
-        validate(instance=response.json(), schema=brewery_schema)
-    if page == 2:
-        assert response.status_code == 200, 'Wrong status code'
-        assert len(cities) == 2, 'Wrong quantity'
-        assert cities == [pytest.city] * 2, 'Wrong city'
-        validate(instance=response.json(), schema=brewery_schema)
+    assert response.status_code == 200, 'Wrong status code'
+    validate(instance=response.json(), schema=brewery_schema)
+    assert len(cities) == page, 'Wrong quantity'

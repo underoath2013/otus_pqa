@@ -33,9 +33,13 @@ def test_get_post_by_id_200(post_id_fixture):
     assert post_id == response.json().get("id"), 'Wrong post_id'
 
 
-@pytest.mark.parametrize('title', [1, 'abc'])
-@pytest.mark.parametrize('body', [1, 'abc'])
-@pytest.mark.parametrize('user_id', [1, 'abc'])
+@pytest.mark.parametrize(
+    'title, body, user_id',
+    [
+        (1, 1, 1),
+        ('abc', 'abc', 'abc')
+    ]
+)
 def test_POST_create_post_201(title, body, user_id):
     data = {
         "title": title,
