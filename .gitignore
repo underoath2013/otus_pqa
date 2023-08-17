@@ -173,3 +173,5 @@ lesson_5/files/__pycache__/
 lesson_7/__pycache__/
 lesson_7/.pytest_cache/
 lesson_7/logs/*
+
+logs/
