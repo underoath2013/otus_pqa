@@ -8,8 +8,6 @@ def process_log_file(file_path) -> dict:
     with open(file_path, 'r') as file:
         print(f"Processing file: {file_path}")
 
-        log_data = file.readlines()
-
         pattern = r'(?P<remote_host>\S+) - - \[(?P<timestamp>.*?)\] "(?P<http_method>\S+) (?P<request>.*?)" (?P<http_status>\d+) (?P<bytes_sent>\d+) "(?P<referer>.*?)" "(?P<user_agent>.*?)" (?P<request_duration>\d+)'
 
         total_requests = 0
@@ -17,7 +15,7 @@ def process_log_file(file_path) -> dict:
         ip_counts = {}
         longest_requests = []  # список словарей
 
-        for line in log_data:
+        for line in file:
             item = re.match(pattern, line)
             if item:
                 total_requests += 1
