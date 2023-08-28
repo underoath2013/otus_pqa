@@ -7,34 +7,36 @@ def process_log_file(file_path) -> dict:
     # Открытие и парсинг лог-файла
     with open(file_path, 'r') as file:
         print(f"Processing file: {file_path}")
-        log_data = file.read()
+
+        log_data = file.readlines()
 
         pattern = r'(?P<remote_host>\S+) - - \[(?P<timestamp>.*?)\] "(?P<http_method>\S+) (?P<request>.*?)" (?P<http_status>\d+) (?P<bytes_sent>\d+) "(?P<referer>.*?)" "(?P<user_agent>.*?)" (?P<request_duration>\d+)'
-        matches = re.finditer(pattern, log_data)
 
         total_requests = 0
         http_method_counts = {}
         ip_counts = {}
         longest_requests = []  # список словарей
 
-        for item in matches:
-            total_requests += 1
+        for line in log_data:
+            item = re.match(pattern, line)
+            if item:
+                total_requests += 1
 
-            http_method = item.group('http_method')
-            http_method_counts[http_method] = http_method_counts.get(http_method, 0) + 1
+                http_method = item.group('http_method')
+                http_method_counts[http_method] = http_method_counts.get(http_method, 0) + 1
 
-            remote_host = item.group('remote_host')
-            ip_counts[remote_host] = ip_counts.get(remote_host, 0) + 1
+                remote_host = item.group('remote_host')
+                ip_counts[remote_host] = ip_counts.get(remote_host, 0) + 1
 
-            request_duration = int(item.group('request_duration'))
-            request_info = {
-                'method': http_method,
-                'url': item.group('request'),
-                'ip': remote_host,
-                'duration': request_duration,
-                'timestamp': item.group('timestamp')
-            }
-            longest_requests.append(request_info)
+                request_duration = int(item.group('request_duration'))
+                request_info = {
+                    'method': http_method,
+                    'url': item.group('request'),
+                    'ip': remote_host,
+                    'duration': request_duration,
+                    'timestamp': item.group('timestamp')
+                }
+                longest_requests.append(request_info)
 
         top_3_ips = sorted(ip_counts.items(), key=lambda x: x[1], reverse=True)[:3]
         top_3_longest_requests = sorted(longest_requests, key=lambda x: x['duration'], reverse=True)[:3]
